@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import static com.task.test.web.PathConstants.IMAGE_PATH;
+import static com.task.test.web.PathConstants.*;
 
 @RestController
 @RequestMapping(value = IMAGE_PATH)
@@ -26,9 +26,13 @@ public class ImageController {
         return imageService.loadImages(page);
     }
 
-    @GetMapping("/{searchTerm}/{fullWord}")
-    public List<Image> searchImages(@PathVariable(name = "searchTerm") String searchTerm,
-                                    @PathVariable(name = "searchTerm") Boolean fullWord){
-        return searchService.search(searchTerm, fullWord);
+    @GetMapping(SEARCH_FULL_PATH)
+    public List<Image> searchImagesFullWord(@PathVariable(name = "searchTerm") String searchTerm){
+        return searchService.search(searchTerm, true);
+    }
+
+    @GetMapping(SEARCH_PART_PATH)
+    public List<Image> searchImages(@PathVariable(name = "searchTerm") String searchTerm){
+        return searchService.search(searchTerm, false);
     }
 }
