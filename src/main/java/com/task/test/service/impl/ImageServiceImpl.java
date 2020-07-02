@@ -21,7 +21,7 @@ public class ImageServiceImpl implements ImageService {
     private final RestTemplate restTemplate;
     private final AuthService authService;
 
-    private final String IMAGE_PATH="/images";
+    private final String IMAGE_PATH = "/images";
     private String token;
     @Value("${spring.agileengine.url}")
     private String baseUrl;
@@ -46,8 +46,8 @@ public class ImageServiceImpl implements ImageService {
                 }
             }
         }
-        if(response == null){
-            throw new RuntimeException("Received empty response on loading images, on page "+page);
+        if (response == null) {
+            throw new RuntimeException("Received empty response on loading images, on page " + page);
         }
         return response.getBody();
     }
@@ -67,8 +67,8 @@ public class ImageServiceImpl implements ImageService {
                 }
             }
         }
-        if(response == null){
-            throw new RuntimeException("Received empty response on loading image with id "+id);
+        if (response == null || response.getBody() == null) {
+            throw new RuntimeException("Received empty response on loading image with id " + id);
         }
         return response.getBody();
     }
@@ -97,7 +97,7 @@ public class ImageServiceImpl implements ImageService {
         HttpEntity<HttpHeaders> entity = new HttpEntity<>(headers);
 
         return restTemplate.exchange(
-                baseUrl+IMAGE_PATH+"/"+id,
+                baseUrl + IMAGE_PATH + "/" + id,
                 HttpMethod.GET,
                 entity,
                 Image.class);

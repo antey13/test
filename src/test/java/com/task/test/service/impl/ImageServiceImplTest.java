@@ -1,4 +1,4 @@
-package com.task.test;
+package com.task.test.service.impl;
 
 import com.task.test.service.ImageService;
 import lombok.SneakyThrows;

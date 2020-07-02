@@ -1,10 +1,12 @@
 package com.task.test.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 
 @Data
+@EqualsAndHashCode
 public class Image implements Serializable {
     private String id;
     private String author;

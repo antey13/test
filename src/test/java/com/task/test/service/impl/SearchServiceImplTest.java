@@ -1,25 +1,21 @@
 package com.task.test.service.impl;
 
 import com.task.test.service.ImageService;
-import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
-class ImageServiceImplTest {
+class SearchServiceImplTest {
     @Autowired
-    private ImageService imageService;
+    private SearchServiceImpl searchService;
 
     @Test
-    void loadImagesTest(){
-        assertNotNull(imageService.loadImages(0));
-    }
-
-    @Test
-    void loadImageTest(){
-        assertNotNull(imageService.loadImage("5d77f13fbc6228a5aa25"));
+    void searchTest(){
+        assertNotNull(searchService.search("48f343496a9e6bdeb611", true));
+        assertEquals(1,searchService.search("48f343496a", false).size());
     }
 }

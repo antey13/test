@@ -1,4 +1,4 @@
-package com.task.test.pool;
+package com.task.test.cache;
 
 import com.task.test.model.Image;
 import com.task.test.model.ImageList;
@@ -22,6 +22,10 @@ public class ImageCache {
     private final ImageService imageService;
     private final Map<String, List<Image>> cache = new HashMap<>();
 
+    public Map<String, List<Image>> getCache() {
+        return cache;
+    }
+
     @PostConstruct
     @Scheduled(fixedRateString = "${spring.cache.update.time}")
     public void cacheUpdate(){
@@ -40,6 +44,8 @@ public class ImageCache {
                     field.setAccessible(true);
                     try {
                         String param = (String) field.get(image);
+                        if(param == null)
+                            continue;
                         for (String word : param.split(" ")) {
                             addValue(word, image);
                         }
